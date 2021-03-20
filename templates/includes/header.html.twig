@@ -1,6 +1,7 @@
 <!-- Header -->
 <header id="header">
-  <a class="logo" href="{{ path('home') }}">Russian KGB</a>
+  <img src="{{ asset('images/logo-marteau.png') }}" alt="logo-kgb" style="margin-left:1rem">
+  <a class="logo" href="{{ path('home') }}">RUSSIAN KGB</a>
   <nav>
     <a href="#menu">Menu</a>
   </nav>
@@ -9,8 +10,13 @@
 <!-- Nav -->
 <nav id="menu">
   <ul class="links">
-    <li><a href="{{ path('home') }}">Home</a></li>
-    <li><a href="elements.html">Elements</a></li>
-    <li><a href="generic.html">Generic</a></li>
+    <li><a href="{{ path('home') }}" class="icon fa-home">&nbsp;Accueil</a></li>
+    <li><a href="" class="icon fa-book">&nbsp;A propos</a></li>
+    {% if is_granted('ROLE_ADMIN') %}
+      <li><a href="{{ path('admin_home') }}" class="icon fa-superpowers">&nbsp;Administrateur</a></li>  
+    {% endif %}
+    {% if app.user %}
+      <li><a href="{{ path('app_logout') }}" class="icon fa-unlock">&nbsp;Se déconnecter</a></li>  
+    {% endif %}
   </ul>
 </nav>

@@ -4,10 +4,13 @@ namespace App\Entity;
 
 use App\Repository\AdminRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=AdminRepository::class)
+ * @UniqueEntity(fields={"email"}, message="Il existe déjà un compte avec cette adresse email.")
  */
 class Admin implements UserInterface
 {
@@ -45,9 +48,16 @@ class Admin implements UserInterface
     private $lastname;
 
     /**
+     * @var \DateTime $ created_at
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isVerified = false;
 
     public function getId(): ?int
     {
@@ -159,9 +169,21 @@ class Admin implements UserInterface
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    // public function setCreatedAt(\DateTimeInterface $created_at): self
+    // {
+    //     $this->created_at = $created_at;
+
+    //     return $this;
+    // }
+
+    public function isVerified(): bool
     {
-        $this->created_at = $created_at;
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

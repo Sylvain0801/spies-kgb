@@ -447,6 +447,7 @@ button.primary,
           box-shadow: none;
   background-color: #ce1b28;
   color: #ffffff !important;
+  text-decoration: none;
 }
 
 input[type="submit"].primary:hover,
@@ -789,7 +790,7 @@ ul.alt li {
 }
 
 table {
-  margin: 0 0 2rem 0;
+  margin: 0 !important;
   width: 100%;
 }
 
@@ -848,8 +849,8 @@ table tbody tr {
   border-color: rgba(0, 0, 0, 0.25);
 }
 
-table tbody tr:nth-child(2n + 1) {
-  background-color: rgba(0, 0, 0, 0.075);
+table tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.075) !important;
 }
 
 table th {
@@ -2722,6 +2723,7 @@ ul.icons li .icon:before {
           box-shadow: none;
   background-color: #ce1b28;
   color: #ffffff !important;
+  text-decoration: none;
 }
 
 #banner input[type="submit"].primary:hover,
@@ -2830,8 +2832,8 @@ ul.icons li .icon:before {
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-#banner table tbody tr:nth-child(2n + 1) {
-  background-color: rgba(255, 255, 255, 0.075);
+#banner table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.075) !important;
 }
 
 #banner table th {
@@ -3085,6 +3087,7 @@ body.is-preload #banner:before {
   background-color: rgba(255, 255, 255, 0.875);
   -webkit-box-shadow: none;
           box-shadow: none;
+  text-decoration: none;
 }
 
 #cta input[type="submit"].primary:hover:active,
@@ -3183,8 +3186,8 @@ body.is-preload #banner:before {
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-#cta table tbody tr:nth-child(2n + 1) {
-  background-color: rgba(255, 255, 255, 0.075);
+#cta table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.075) !important;
 }
 
 #cta table th {
@@ -3304,6 +3307,7 @@ body.is-preload #banner:before {
           box-shadow: none;
   background-color: #ce1b28;
   color: #ffffff !important;
+  text-decoration: none;
 }
 
 #footer input[type="submit"].primary:hover,
@@ -3412,8 +3416,8 @@ body.is-preload #banner:before {
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-#footer table tbody tr:nth-child(2n + 1) {
-  background-color: rgba(255, 255, 255, 0.075);
+#footer table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.075) !important;
 }
 
 #footer table th {
@@ -3579,7 +3583,7 @@ body:before {
   font-weight: 600;
   height: inherit;
   line-height: inherit;
-  padding: 0 1.25rem;
+  padding: 0 0.5rem;
   text-decoration: none;
 }
 
@@ -3752,6 +3756,7 @@ body:before {
           box-shadow: none;
   background-color: #ce1b28;
   color: #ffffff !important;
+  text-decoration: none;
 }
 
 #heading input[type="submit"].primary:hover,
@@ -3860,8 +3865,8 @@ body:before {
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-#heading table tbody tr:nth-child(2n + 1) {
-  background-color: rgba(255, 255, 255, 0.075);
+#heading table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.075) !important;
 }
 
 #heading table th {
@@ -4036,6 +4041,7 @@ body:before {
           box-shadow: none;
   background-color: #ce1b28;
   color: #ffffff !important;
+  text-decoration: none;
 }
 
 #menu input[type="submit"].primary:hover,
@@ -4160,5 +4166,19 @@ body.is-menu-visible #menu {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.logo-kgb {
+  background: url(../../images/logo-kgb.png) center no-repeat;
+}
+
+.logo-image-kgb {
+  background: url(../../images/image-logo-kgb.jpg) center/cover no-repeat;
+  border-radius: 5px;
+}
+
+.button.small.icon:before {
+  margin-right: 0;
+  font-size: 16px;
 }
 /*# sourceMappingURL=main.css.map */

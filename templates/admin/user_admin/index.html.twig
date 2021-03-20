@@ -1,0 +1,38 @@
+{% extends "admin/index.html.twig" %}
+{% block table %}
+<div class="col-10 col-12-medium">
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Prénom</th>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Rôles</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for adminuser in adminusers %}   
+          <tr>
+            <td>{{ adminuser.firstname }}</td>
+            <td>{{ adminuser.lastname }}</td>
+            <td>{{ adminuser.email }}</td>
+            <td>
+                {% if adminuser.roles|length == 1 %}
+                utilisateur
+                {% elseif adminuser.roles|length == 2 %}
+                administrateur 
+                {% endif %}
+            </td>
+            <td>
+                <a href="{{ path('admin_user_edit', {'id':adminuser.id}) }}" class="button small icon fa-pencil" role="button" title="Editer"></a>
+                <a href="{{ path('admin_user_delete', {'id':adminuser.id}) }}" class="button primary small icon fa-trash" role="button" title="Supprimer" onclick="return confirm('L\'utilisateur {{ adminuser.firstname }} {{ adminuser.lastname }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

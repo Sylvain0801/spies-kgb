@@ -100,6 +100,7 @@
 					&:hover {
 						background-color: transparentize(_palette($p, fg-bold), 0.125);
 						box-shadow: none;
+						text-decoration: none;
 
 						&:active {
 							background-color: transparentize(_palette($p, fg-bold), 0.5);
@@ -109,6 +110,7 @@
 				@else {
 					background-color: _palette($highlight, bg);
 					color: _palette($highlight, fg-bold) !important;
+					text-decoration: none;
 
 					&:hover {
 						background-color: lighten(_palette($highlight, bg), 5);

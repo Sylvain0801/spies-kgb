@@ -75,3 +75,14 @@
 	justify-content: space-between;
 	align-items: center;
 }
+.logo-kgb {
+	background: url(../../images/logo-kgb.png) center no-repeat;
+}
+.logo-image-kgb {
+	background: url(../../images/image-logo-kgb.jpg) center/cover no-repeat;
+	border-radius: 5px;
+}
+.button.small.icon:before {
+	margin-right: 0;
+	font-size: 16px;
+}

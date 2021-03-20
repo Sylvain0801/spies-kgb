@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace administrateur - Russian KGB
+{% endblock %}
+
+{% block body %}
+	<div id="heading">
+		<h1>Espace administrateur</h1>
+	</div>
+	<section id="main" class="wrapper">
+		<div class="inner">
+			<div class="content">
+        <h1 class="text-center">Tableau de bord</h1>
+				<div class="row">
+					<div class="col-2 col-12-medium">
+						<ul class="actions stacked">
+              <li><a href="{{ path('admin_user_list') }}" class="button primary fit" style="padding: 0 !important;">Administrateurs</a></li>
+              <li><a href="#" class="button primary fit">Agents</a></li>
+              <li><a href="#" class="button primary fit">Contacts</a></li>
+              <li><a href="#" class="button primary fit">Cibles</a></li>
+              <li><a href="#" class="button primary fit">Missions</a></li>
+              <li><a href="#" class="button primary fit">Planques</a></li>
+              <li><a href="#" class="button primary fit">Spécialités</a></li>
+              <li><a href="#" class="button primary fit">Statuts</a></li>
+            </ul>
+          </div>
+          {% block table %}
+            <div class="col-1 col-12-medium"></div>
+            <div class="col-9 col-12-medium logo-image-kgb"></div>
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
