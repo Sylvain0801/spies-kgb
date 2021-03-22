@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Admin;
 use App\Form\UserAdminType;
 use App\Repository\AdminRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,10 +20,17 @@ class UserAdminController extends AbstractController
     /**
      * @Route("/list", name="list")
      */
-    public function usersAdminList(AdminRepository $adminRepository): Response
+    public function usersAdminList(Request $request, PaginatorInterface $paginator): Response
     {
+        $data = $this->getDoctrine()->getRepository(Admin::class)->findAll();
+        $adminusers = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            8
+        );
         return $this->render('admin/user_admin/index.html.twig', [
-            'adminusers' => $adminRepository->findAll()
+            'adminusers' => $adminusers,
+            'headers' => ['Prénom', 'Nom', 'Email', 'Rôles', 'Actions']
         ]);
     }
 

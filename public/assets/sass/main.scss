@@ -79,10 +79,57 @@
 	background: url(../../images/logo-kgb.png) center no-repeat;
 }
 .logo-image-kgb {
-	background: url(../../images/image-logo-kgb.jpg) center/cover no-repeat;
-	border-radius: 5px;
+	background: url(../../images/image-logo-kgb.jpg) center no-repeat;
 }
 .button.small.icon:before {
 	margin-right: 0;
 	font-size: 16px;
+}
+.pagination {
+	display: flex;
+	justify-content: center;
+	& .first, .last, .page, .next, .previous, .current {
+		@include vendor('appearance', 'none');
+		@include vendor('transition', (
+			'background-color #{_duration(transition)} ease-in-out',
+			'box-shadow #{_duration(transition)} ease-in-out',
+			'color #{_duration(transition)} ease-in-out'
+		));
+		border: 0;
+		border-radius: _size(border-radius);
+		display: flex;
+		align-items: center;
+		font-weight: _font(weight-bold);
+		line-height: 1;
+		text-align: center;
+		text-decoration: none;
+		white-space: nowrap;
+		// /small
+		font-size: 0.8rem;
+		padding: 0.5rem;
+		margin: 0.5rem 0.25rem;
+	}
+	& .first, .last, .page, .next, .previous {
+		cursor: pointer;
+		box-shadow: none;
+		background-color: #ce1b28;
+		text-decoration: none;
+		& >a {
+			color: #fff !important;
+		}
+		&:hover {
+			background-color: lighten(#ce1b28, 5);
+			box-shadow: none;
+
+			&:active {
+				background-color: darken(#ce1b28, 5);
+			}
+		}
+	}
+	.current {
+		background-color: transparent;
+    -webkit-box-shadow: inset 0 0 0 1px #555555;
+    box-shadow: inset 0 0 0 1px #555555;
+    color: #555555 !important;
+	}
 }

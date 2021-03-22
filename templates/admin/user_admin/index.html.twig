@@ -5,11 +5,9 @@
     <table>
       <thead>
         <tr>
-          <th>Prénom</th>
-          <th>Nom</th>
-          <th>Email</th>
-          <th>Rôles</th>
-          <th>Actions</th>
+          {% for header in headers %}
+            <th>{{ header }}</th>
+          {% endfor %}
         </tr>
       </thead>
       <tbody>
@@ -33,6 +31,9 @@
         {% endfor %}
       </tbody>
     </table>
+  </div>
+  <div class="navigation">
+    {{ knp_pagination_render(adminusers) }}
   </div>
 </div>
 {% endblock %}
