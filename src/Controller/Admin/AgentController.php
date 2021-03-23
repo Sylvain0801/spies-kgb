@@ -16,13 +16,19 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  */
 class AgentController extends AbstractController
 {
-    
     /**
-     * @Route("/list", name="list")
+     * @Route("/list/{header}/{sorting}", name="list", defaults={"header": "id", "sorting": "ASC"})
      */
-    public function agentList(Request $request, PaginatorInterface $paginator): Response
+    public function agentList($header, $sorting, Request $request, PaginatorInterface $paginator): Response
     {
-        $data = $this->getDoctrine()->getRepository(Agent::class)->findAll();
+        $headers = [
+            'identification_code' => 'Code ID',
+            'firstname' => 'Prénom',
+            'lastname' => 'Nom',
+            'date_of_birth' => 'Né le',
+            'nationality' => 'Nationalité'
+        ];
+        $data = $this->getDoctrine()->getRepository(Agent::class)->findBy([], [$header => $sorting]);
         $agents = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1),
@@ -30,7 +36,7 @@ class AgentController extends AbstractController
         );
         return $this->render('admin/agent/index.html.twig', [
             'agents' => $agents,
-            'headers' => ['Code ID', 'Prénom', 'Nom', 'Né le', 'Nationalité', 'Actions'],
+            'headers' => $headers,
             'section' => 'agents'
         ]);
     }

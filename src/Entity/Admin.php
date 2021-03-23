@@ -169,13 +169,6 @@ class Admin implements UserInterface
         return $this->created_at;
     }
 
-    // public function setCreatedAt(\DateTimeInterface $created_at): self
-    // {
-    //     $this->created_at = $created_at;
-
-    //     return $this;
-    // }
-
     public function isVerified(): bool
     {
         return $this->isVerified;

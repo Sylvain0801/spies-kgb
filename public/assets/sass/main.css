@@ -4319,4 +4319,41 @@ body.is-menu-visible #menu {
   border: 1px solid #a94442;
   color: #f2dede;
 }
+
+.headers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sort-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-left: 0.3rem;
+  line-height: 0.6;
+  font-size: 16px;
+}
+
+.sort-buttons > a {
+  color: #555555;
+}
+
+.sort-buttons > a:hover {
+  text-decoration: none;
+  opacity: 0.75;
+  -webkit-transform: scale(1.4);
+          transform: scale(1.4);
+}
 /*# sourceMappingURL=main.css.map */

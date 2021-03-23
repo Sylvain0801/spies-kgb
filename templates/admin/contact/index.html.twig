@@ -1,0 +1,50 @@
+{% extends "admin/index.html.twig" %}
+{% block table %}
+<div class="col-10 col-12-medium">
+  <div class="table-wrapper">
+    <h3 class="table-title icon fa-caret-right">&nbsp;Section {{ section }}</h3>
+    {% for message in app.flashes('message_admin') %}
+      <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% endfor %}
+    <table>
+      <thead>
+        <tr>
+          {% for key, header in headers %}
+            <th>
+              <div class="headers">
+                {{ header }}
+                <div class="sort-buttons">
+                  <a href="{{ path('admin_contact_list', {'header': key , 'sorting': 'DESC'}) }}" class="icon fa-caret-up" title="Tri décroissant"></a>
+                  <a href="{{ path('admin_contact_list', {'header': key , 'sorting': 'ASC'}) }}" class="icon fa-caret-down" title="Tri croissant"></a>
+                </div>
+              </div>
+            </th>
+          {% endfor %}
+          <th>Actions</th>  
+        </tr>
+      </thead>
+      <tbody>
+        {% for contact in contacts %}   
+          <tr>
+            <td>{{ contact.codeName }}</td>
+            <td>{{ contact.firstname }}</td>
+            <td>{{ contact.lastname }}</td>
+            <td>{{ contact.dateOfBirth|date('d/m/Y') }}</td>
+            <td>{{ contact.nationality.name }}</td>
+            <td>
+                <a href="{{ path('admin_contact_edit', {'id':contact.id}) }}" class="button small icon fa-pencil" role="button" title="Editer"></a>
+                <a href="{{ path('admin_contact_delete', {'id':contact.id}) }}" class="button primary small icon fa-trash" role="button" title="Supprimer" onclick="return confirm('Le contact {{ contact.firstname }} {{ contact.lastname }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% if contacts.getTotalItemCount > 8 %}
+    <div class="navigation">
+      {{ knp_pagination_render(contacts) }}
+    </div>
+  {% endif %}
+  <a href="{{ path('admin_contact_new') }}" class="button small icon fa-plus" role="button">&nbsp;Ajouter</a>
+</div>
+{% endblock %}

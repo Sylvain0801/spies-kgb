@@ -9,9 +9,19 @@
     <table>
       <thead>
         <tr>
-          {% for header in headers %}
-            <th>{{ header }}</th>
+          {% for key, header in headers %}
+            <th>
+              <div class="headers">
+                {{ header }}
+                <div class="sort-buttons">
+                  <a href="{{ path('admin_user_list', {'header': key , 'sorting': 'DESC'}) }}" class="icon fa-caret-up" title="Tri décroissant"></a>
+                  <a href="{{ path('admin_user_list', {'header': key , 'sorting': 'ASC'}) }}" class="icon fa-caret-down" title="Tri croissant"></a>
+                </div>
+              </div>
+            </th>
           {% endfor %}
+          <th>Rôles</th>  
+          <th>Actions</th>  
         </tr>
       </thead>
       <tbody>

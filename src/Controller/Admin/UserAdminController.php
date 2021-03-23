@@ -17,11 +17,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserAdminController extends AbstractController
 {
     /**
-     * @Route("/list", name="list")
+     * @Route("/list/{header}/{sorting}", name="list", defaults={"header": "id", "sorting": "ASC"})
      */
-    public function usersAdminList(Request $request, PaginatorInterface $paginator): Response
+    public function usersAdminList($header, $sorting, Request $request, PaginatorInterface $paginator): Response
     {
-        $data = $this->getDoctrine()->getRepository(Admin::class)->findAll();
+        $headers = [
+            'firstname' => 'Prénom',
+            'lastname' => 'Nom',
+            'email' => 'Email'
+        ];
+        $data = $this->getDoctrine()->getRepository(Admin::class)->findBy([], [$header => $sorting]);
         $adminusers = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1),
@@ -29,7 +34,7 @@ class UserAdminController extends AbstractController
         );
         return $this->render('admin/user_admin/index.html.twig', [
             'adminusers' => $adminusers,
-            'headers' => ['Prénom', 'Nom', 'Email', 'Rôles', 'Actions'],
+            'headers' => $headers,
             'section' => 'utilisateurs'
         ]);
     }
