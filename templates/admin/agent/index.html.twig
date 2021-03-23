@@ -1,20 +1,41 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello AgentController!{% endblock %}
-
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Job/symfony/spies-kgb/src/Controller/AgentController.php'|file_link(0) }}">src/Controller/AgentController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Job/symfony/spies-kgb/templates/agent/index.html.twig'|file_link(0) }}">templates/agent/index.html.twig</a></code></li>
-    </ul>
+{% extends "admin/index.html.twig" %}
+{% block table %}
+<div class="col-10 col-12-medium">
+  <div class="table-wrapper">
+    <h3 class="table-title icon fa-caret-right">&nbsp;Section {{ section }}</h3>
+    {% for message in app.flashes('message_admin') %}
+      <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% endfor %}
+    <table>
+      <thead>
+        <tr>
+          {% for header in headers %}
+            <th>{{ header }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for agent in agents %}   
+          <tr>
+            <td>{{ agent.identificationCode }}</td>
+            <td>{{ agent.firstname }}</td>
+            <td>{{ agent.lastname }}</td>
+            <td>{{ agent.dateOfBirth|date('d/m/Y') }}</td>
+            <td>{{ agent.nationality|country_name('fr') }}</td>
+            <td>
+                <a href="{{ path('admin_agent_edit', {'id':agent.id}) }}" class="button small icon fa-pencil" role="button" title="Editer"></a>
+                <a href="{{ path('admin_agent_delete', {'id':agent.id}) }}" class="button primary small icon fa-trash" role="button" title="Supprimer" onclick="return confirm('L\'agent {{ agent.firstname }} {{ agent.lastname }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% if agents.getTotalItemCount > 8 %}
+    <div class="navigation">
+      {{ knp_pagination_render(agents) }}
+    </div>
+  {% endif %}
+  <a href="{{ path('admin_agent_new') }}" class="button small icon fa-plus" role="button">&nbsp;Ajouter</a>
 </div>
 {% endblock %}

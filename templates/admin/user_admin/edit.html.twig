@@ -1,6 +1,18 @@
 {% extends "admin/index.html.twig" %}
 {% block table %}
-<div class="col-10 col-12-medium">
-  {{ form(userEditForm) }}
+<div class="col-6 col-12-medium">
+  <h3 class="table-title icon fa-caret-right">&nbsp;Section {{ section }}</h3>
+  {{ form_start(userEditForm) }}
+    {{ form_row(userEditForm.firstname) }}
+    {{ form_row(userEditForm.lastname) }}
+    {{ form_row(userEditForm.email) }}
+    {{ form_row(userEditForm.roles) }}
+    <p class="icon fa-calendar">&nbsp;Profil créé le : {{ createdAt|date('d/m/Y') }}</p>
+    <div class="form-buttons-group">
+      <button type="submit" class="button primary icon fa-save">Enregistrer</button>
+      <a href="{{ path('admin_user_list') }}" class="button icon fa-backward">Retour liste</a>
+    </div>
+  {{ form_end(userEditForm) }}
 </div>
+<div class="col-4 col-12-medium logo-kgb top"></div>
 {% endblock %}

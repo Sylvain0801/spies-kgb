@@ -6,6 +6,8 @@
 
 	input[type="text"],
 	input[type="password"],
+	input[type="number"],
+	input[type="date"],
 	input[type="email"],
 	input[type="tel"],
 	input[type="search"],
@@ -22,7 +24,8 @@
 		padding: 0 1rem;
 		text-decoration: none;
 		width: 100%;
-
+		margin-bottom: 1.5rem !important;
+		
 		&:invalid {
 			box-shadow: none;
 		}
@@ -37,6 +40,8 @@
 
 	input[type="text"],
 	input[type="password"],
+	input[type="number"],
+	input[type="date"],
 	input[type="email"],
 	input[type="tel"],
 	input[type="search"],
@@ -153,6 +158,8 @@
 
 		input[type="text"],
 		input[type="password"],
+		input[type="number"],
+		input[type="date"],
 		input[type="email"],
 		input[type="tel"],
 		input[type="search"],
@@ -161,7 +168,6 @@
 		textarea {
 			background-color: _palette($p, border-bg);
 			border-color: _palette($p, border);
-			margin-bottom: 2rem;
 			&:focus {
 				@if $p == $highlight {
 					border-color: _palette($p, fg-bold);

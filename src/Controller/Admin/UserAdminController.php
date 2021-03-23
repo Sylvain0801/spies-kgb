@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Admin;
 use App\Form\UserAdminType;
-use App\Repository\AdminRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -30,7 +29,8 @@ class UserAdminController extends AbstractController
         );
         return $this->render('admin/user_admin/index.html.twig', [
             'adminusers' => $adminusers,
-            'headers' => ['Prénom', 'Nom', 'Email', 'Rôles', 'Actions']
+            'headers' => ['Prénom', 'Nom', 'Email', 'Rôles', 'Actions'],
+            'section' => 'utilisateurs'
         ]);
     }
 
@@ -51,7 +51,9 @@ class UserAdminController extends AbstractController
             return $this->redirectToRoute('admin_user_list');
         }
         return $this->render('admin/user_admin/edit.html.twig', [
-            'userEditForm' => $form->createView()
+            'userEditForm' => $form->createView(),
+            'createdAt' => $admin->getCreatedAt(),
+            'section' => 'utilisateurs'
             ]);
         }
     

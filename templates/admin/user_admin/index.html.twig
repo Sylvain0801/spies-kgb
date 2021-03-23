@@ -2,6 +2,10 @@
 {% block table %}
 <div class="col-10 col-12-medium">
   <div class="table-wrapper">
+    <h3 class="table-title icon fa-caret-right">&nbsp;Section {{ section }}</h3>
+    {% for message in app.flashes('message_admin') %}
+      <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% endfor %}
     <table>
       <thead>
         <tr>
@@ -17,23 +21,25 @@
             <td>{{ adminuser.lastname }}</td>
             <td>{{ adminuser.email }}</td>
             <td>
-                {% if adminuser.roles|length == 1 %}
+              {% if adminuser.roles|length == 1 %}
                 utilisateur
-                {% elseif adminuser.roles|length == 2 %}
+              {% elseif adminuser.roles|length == 2 %}
                 administrateur 
-                {% endif %}
+              {% endif %}
             </td>
             <td>
-                <a href="{{ path('admin_user_edit', {'id':adminuser.id}) }}" class="button small icon fa-pencil" role="button" title="Editer"></a>
-                <a href="{{ path('admin_user_delete', {'id':adminuser.id}) }}" class="button primary small icon fa-trash" role="button" title="Supprimer" onclick="return confirm('L\'utilisateur {{ adminuser.firstname }} {{ adminuser.lastname }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
+              <a href="{{ path('admin_user_edit', {'id':adminuser.id}) }}" class="button small icon fa-pencil" role="button" title="Editer"></a>
+              <a href="{{ path('admin_user_delete', {'id':adminuser.id}) }}" class="button primary small icon fa-trash" role="button" title="Supprimer" onclick="return confirm('L\'utilisateur {{ adminuser.firstname }} {{ adminuser.lastname }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
             </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
-  <div class="navigation">
-    {{ knp_pagination_render(adminusers) }}
-  </div>
+  {% if adminusers.getTotalItemCount > 8 %}
+    <div class="navigation">
+      {{ knp_pagination_render(adminusers) }}
+    </div>
+  {% endif %}
 </div>
 {% endblock %}
