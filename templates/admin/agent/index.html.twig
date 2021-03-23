@@ -21,7 +21,7 @@
             <td>{{ agent.firstname }}</td>
             <td>{{ agent.lastname }}</td>
             <td>{{ agent.dateOfBirth|date('d/m/Y') }}</td>
-            <td>{{ agent.nationality|country_name('fr') }}</td>
+            <td>{{ agent.nationality.name }}</td>
             <td>
                 <a href="{{ path('admin_agent_edit', {'id':agent.id}) }}" class="button small icon fa-pencil" role="button" title="Editer"></a>
                 <a href="{{ path('admin_agent_delete', {'id':agent.id}) }}" class="button primary small icon fa-trash" role="button" title="Supprimer" onclick="return confirm('L\'agent {{ agent.firstname }} {{ agent.lastname }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>

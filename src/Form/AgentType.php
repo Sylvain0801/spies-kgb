@@ -3,8 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Agent;
+use App\Entity\Nationality;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,9 +24,11 @@ class AgentType extends AbstractType
                 'label' => 'Date de naissance',
                 'widget' => 'single_text'
                 ])
-            ->add('nationality', CountryType::class, [
+            ->add('nationality', EntityType::class, [
+                'class' => Nationality::class,
+                'choice_label' => 'name',
                 'label' => 'Nationalité',
-                'choice_translation_locale' => 'fr'
+                'placeholder' => '--Liste nationalités--'            
                 ])
         ;
     }

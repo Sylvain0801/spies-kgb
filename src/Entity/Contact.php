@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\AgentRepository;
+use App\Repository\ContactRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=AgentRepository::class)
+ * @ORM\Entity(repositoryClass=ContactRepository::class)
  */
-class Agent
+class Contact
 {
     /**
      * @ORM\Id
@@ -16,11 +16,6 @@ class Agent
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $identification_code;
 
     /**
      * @ORM\Column(type="string", length=128)
@@ -38,27 +33,19 @@ class Agent
     private $date_of_birth;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Nationality::class, inversedBy="agents")
+     * @ORM\Column(type="string", length=45)
+     */
+    private $code_name;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Nationality::class, inversedBy="contacts")
      * @ORM\JoinColumn(nullable=false)
      */
     private $nationality;
 
-
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdentificationCode(): ?int
-    {
-        return $this->identification_code;
-    }
-
-    public function setIdentificationCode(int $identification_code): self
-    {
-        $this->identification_code = $identification_code;
-
-        return $this;
     }
 
     public function getFirstname(): ?string
@@ -93,6 +80,18 @@ class Agent
     public function setDateOfBirth(\DateTimeInterface $date_of_birth): self
     {
         $this->date_of_birth = $date_of_birth;
+
+        return $this;
+    }
+
+    public function getCodeName(): ?string
+    {
+        return $this->code_name;
+    }
+
+    public function setCodeName(string $code_name): self
+    {
+        $this->code_name = $code_name;
 
         return $this;
     }
