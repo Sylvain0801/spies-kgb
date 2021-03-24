@@ -18,9 +18,9 @@ class StatuteController extends AbstractController
 {
     
     /**
-     * @Route("/list/{header}/{sorting}/{id}", name="list", defaults={"header": "id", "sorting": "ASC", "id": null})
+     * @Route("/list/{header}/{sorting}", name="list", defaults={"header": "id", "sorting": "ASC"})
      */
-    public function statuteList($header, $sorting, $id,  Request $request, PaginatorInterface $paginator): Response
+    public function statuteList($header, $sorting, Request $request, PaginatorInterface $paginator): Response
     {
         $headers = [
             'name' => 'Nom',
@@ -32,29 +32,30 @@ class StatuteController extends AbstractController
             $request->query->getInt('page', 1),
             8
         );
-        $statute = $this->getDoctrine()->getRepository(Statute::class)->findOneBy(['id' => $id]);
-        if (!$statute) {
-            $statute =new Statute();
-        }
-        $form = $this->createForm(StatuteType::class, $statute);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($statute);
-            $em->flush();
-
-            $this->addFlash('message_admin', 'Les statuts ont été modifiés avec succès');
-            return $this->redirectToRoute('admin_statute_list');
-        }
 
         return $this->render('admin/statute/index.html.twig', [
             'statutes' => $statutes,
             'headers' => $headers,
-            'section' => 'Statuts',
-            'statuteForm' => $form->createView()
+            'section' => 'Statuts'
         ]);
     }
     
+    /**
+    * @Route("/edit/{id}/{name}/{color}/", name="edit")
+    */   
+    public function editStatute($name, $color, Statute $statute):Response
+    {
+        $statute->setName($name);
+        $statute->setColor('#'.$color);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($statute);
+        $em->flush();
+
+        return new Response('true');
+        
+    }
+
     /**
     * @Route("/delete/{id}", name="delete")
     */   
@@ -67,6 +68,7 @@ class StatuteController extends AbstractController
         $this->addFlash('message_admin', 'Le statut a été supprimé avec succès');
 
     return $this->redirectToRoute('admin_statute_list');
+    
     }
 
 }

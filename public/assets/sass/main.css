@@ -4366,6 +4366,7 @@ input[type="color"] {
   width: 3rem;
   cursor: pointer;
   border-radius: 4px;
+  margin-bottom: 2rem;
 }
 
 input[type="color"]:focus {
@@ -4382,5 +4383,10 @@ input[type="color"]:focus {
   border: 0.5px solid #555555;
   -webkit-box-shadow: inset 1px 1px 2px black;
           box-shadow: inset 1px 1px 2px black;
+}
+
+#save {
+  display: block;
+  max-width: 140px;
 }
 /*# sourceMappingURL=main.css.map */

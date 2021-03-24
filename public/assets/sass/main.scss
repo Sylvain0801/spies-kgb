@@ -198,6 +198,7 @@ input[type="color"] {
 	width: 3rem;
 	cursor: pointer;
 	border-radius: 4px;
+	margin-bottom: 2rem;
 	&:focus {
 		border: 1.5px solid #ce1b28;
     box-shadow: 0 0 0 1px #ce1b28;
@@ -210,4 +211,8 @@ input[type="color"] {
 	border-radius: 50%;
 	border: 0.5px solid #555555;
 	box-shadow: inset 1px 1px 2px black;
+}
+#save {
+	display: block;
+	max-width: 140px;
 }
