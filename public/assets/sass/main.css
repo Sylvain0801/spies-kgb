@@ -4312,12 +4312,16 @@ body.is-menu-visible #menu {
   background-color: #5cb85c;
   border: 1px solid #3c763d;
   color: #dff0d8;
+  -webkit-box-shadow: 0px 2px 5px var(--color-success);
+          box-shadow: 0px 2px 5px var(--color-success);
 }
 
 .alert.alert-danger {
   background-color: #ea272d;
   border: 1px solid #a94442;
   color: #f2dede;
+  -webkit-box-shadow: 0px 2px 5px var(--color-danger);
+          box-shadow: 0px 2px 5px var(--color-danger);
 }
 
 .headers {
@@ -4355,5 +4359,28 @@ body.is-menu-visible #menu {
   opacity: 0.75;
   -webkit-transform: scale(1.4);
           transform: scale(1.4);
+}
+
+input[type="color"] {
+  height: 3rem;
+  width: 3rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+input[type="color"]:focus {
+  border: 1.5px solid #ce1b28;
+  -webkit-box-shadow: 0 0 0 1px #ce1b28;
+          box-shadow: 0 0 0 1px #ce1b28;
+  outline: none;
+}
+
+.color-display {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  border: 0.5px solid #555555;
+  -webkit-box-shadow: inset 1px 1px 2px black;
+          box-shadow: inset 1px 1px 2px black;
 }
 /*# sourceMappingURL=main.css.map */

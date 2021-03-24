@@ -1,0 +1,21 @@
+<div class="col-6 col-12-medium">
+  <h3 class="table-title icon fa-caret-right">&nbsp;Section {{ section }}</h3>
+  {{ form_start(targetForm) }}
+    {{ form_row(targetForm.firstname) }}
+    {{ form_row(targetForm.lastname) }}
+    <div class="row">
+      <div class="col-6 col-12-small">
+        {{ form_row(targetForm.code_name) }}
+      </div>
+      <div class="col-6 col-12-small">
+        {{ form_row(targetForm.date_of_birth) }}
+      </div>
+    </div>
+    {{ form_row(targetForm.nationality) }}
+    <div class="form-buttons-group">
+      <button type="submit" class="button primary icon fa-save">{{ btncaption }}</button>
+      <a href="{{ path('admin_target_list') }}" class="button icon fa-backward">Retour liste</a>
+    </div>
+  {{ form_end(targetForm) }}
+</div>
+<div class="col-4 col-12-medium logo-kgb top"></div>
