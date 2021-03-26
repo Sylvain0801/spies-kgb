@@ -11,10 +11,16 @@ class StatuteFixtures extends Fixture
     
     public function load(ObjectManager $manager)
     {
-        $statutes = ['En préparation', 'En cours', 'Terminé', 'Echec' ];
-        foreach($statutes as $value) {
+        $statutes = [
+            'En préparation' => 'blue',
+            'En cours' => 'orange',
+            'Terminé' => 'green',
+            'Echec' => 'red'
+        ];
+        foreach($statutes as $key => $value) {
             $statute = new Statute();
-            $statute->setName($value);
+            $statute->setName($key);
+            $statute->setColor($value);
             $manager->persist($statute);
         }
 

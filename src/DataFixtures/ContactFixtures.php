@@ -19,7 +19,7 @@ class ContactFixtures extends Fixture implements DependentFixtureInterface
             $contact = new Contact();
             $contact
                 ->setFirstname($faker->firstname())
-                ->setLastname($faker->lastname)
+                ->setLastname($faker->lastname)          
                 ->setCodeName($faker->word)
                 ->setDateOfBirth($faker->dateTimeBetween($startDate = '-55 years', $endDate = '-25 years', $timezone = null))
                 ->setNationality($nationality);

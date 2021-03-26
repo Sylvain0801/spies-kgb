@@ -32,18 +32,13 @@
             </td>
             <td>
               <a id="{{'btn_'~statute.id}}" class="button small icon fa-pencil btn-edit" role="button" title="Editer" data-id="{{ statute.id }}" data-name="{{ statute.name }}" data-color="{{ statute.color }}"></a>
-              <a href="{{ path('admin_statute_delete', {'id':statute.id}) }}" class="button primary small icon fa-trash" role="button" title="Supprimer" onclick="return confirm('Le statut {{ statute.name }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
+              <a class="button primary small icon fa-trash btn-delete" role="button" title="Supprimer" data-id="{{ statute.id }}" onclick="return confirm('Le statut {{ statute.name }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
             </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
-  {% if statutes.getTotalItemCount > 8 %}
-    <div class="navigation">
-      {{ knp_pagination_render(statutes) }}
-    </div>
-  {% endif %}
 </div>
 <div class="col-5 col-12-medium" style="padding-top: 3rem;">
   <form>
@@ -53,8 +48,8 @@
     <label for="inputColor">Couleur</label>
     <input type="color" name="inputColor" id="inputColor" required>
     <div class="form-buttons-group">
-      <a id="save" class="button primary icon fa-save">Enregistrer</a>
-      <a id="create" class="button icon fa-plus">Créer</a>
+      <a id="save" class="button primary icon fa-save">Modifier</a>
+      <a id="create" class="button icon fa-plus">Ajouter</a>
     </div>
   </form>
 </div>

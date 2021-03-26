@@ -39,11 +39,22 @@ class Nationality
      */
     private $targets;
 
+    /**
+     * @ORM\Column(type="string", length=128)
+     */
+    private $Country;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Hideout::class, mappedBy="country")
+     */
+    private $hideouts;
+
     public function __construct()
     {
         $this->agents = new ArrayCollection();
         $this->contacts = new ArrayCollection();
         $this->targets = new ArrayCollection();
+        $this->hideouts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -147,6 +158,48 @@ class Nationality
             // set the owning side to null (unless already changed)
             if ($target->getNationality() === $this) {
                 $target->setNationality(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->Country;
+    }
+
+    public function setCountry(string $Country): self
+    {
+        $this->Country = $Country;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Hideout[]
+     */
+    public function getHideouts(): Collection
+    {
+        return $this->hideouts;
+    }
+
+    public function addHideout(Hideout $hideout): self
+    {
+        if (!$this->hideouts->contains($hideout)) {
+            $this->hideouts[] = $hideout;
+            $hideout->setCountry($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHideout(Hideout $hideout): self
+    {
+        if ($this->hideouts->removeElement($hideout)) {
+            // set the owning side to null (unless already changed)
+            if ($hideout->getCountry() === $this) {
+                $hideout->setCountry(null);
             }
         }
 

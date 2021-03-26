@@ -16,8 +16,10 @@ class NationalityFixtures extends Fixture
         foreach ($nationalities as $key => $value) {
             $nationality = new Nationality();
             $nationality->setName($value['nationalite']);
+            $nationality->setCountry($value['libelle']);
             $manager->persist($nationality);
-            $this->addReference('nationality_'.$key, $nationality);
+            $this->addReference('nationality_'.$key, $nationality->getName());
+            $this->addReference('country_'.$key, $nationality->getCountry());
         }
 
         $manager->flush();

@@ -3,12 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Statute;
-use App\Form\StatuteType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
@@ -20,18 +19,14 @@ class StatuteController extends AbstractController
     /**
      * @Route("/list/{header}/{sorting}", name="list", defaults={"header": "id", "sorting": "ASC"})
      */
-    public function statuteList($header, $sorting, Request $request, PaginatorInterface $paginator): Response
+    public function statuteList($header, $sorting): Response
     {
         $headers = [
             'name' => 'Nom',
             'color' => 'couleur'
         ];
-        $data = $this->getDoctrine()->getRepository(Statute::class)->findBy([], [$header => $sorting]);
-        $statutes = $paginator->paginate(
-            $data,
-            $request->query->getInt('page', 1),
-            8
-        );
+
+        $statutes = $this->getDoctrine()->getRepository(Statute::class)->findBy([], [$header => $sorting]);
 
         return $this->render('admin/statute/index.html.twig', [
             'statutes' => $statutes,
@@ -41,7 +36,25 @@ class StatuteController extends AbstractController
     }
     
     /**
-    * @Route("/edit/{id}/{name}/{color}/", name="edit")
+    * @Route("/new/{name}/{color}", name="new")
+    */   
+    public function newStatute($name, $color):JsonResponse
+    {
+        $statute = new Statute();
+        $statute->setName($name);
+        $statute->setColor('#'.$color);
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($statute);
+        $em->flush();
+        
+        $id = $statute->getId();
+        return new JsonResponse(['newid' => $id]);
+        
+    }
+
+    /**
+    * @Route("/edit/{id}/{name}/{color}", name="edit")
     */   
     public function editStatute($name, $color, Statute $statute):Response
     {
@@ -59,15 +72,13 @@ class StatuteController extends AbstractController
     /**
     * @Route("/delete/{id}", name="delete")
     */   
-    public function delete(Statute $statute): RedirectResponse
+    public function delete(Statute $statute): Response
     {
         $em = $this->getDoctrine()->getManager();
         $em->remove($statute);
         $em->flush();
         
-        $this->addFlash('message_admin', 'Le statut a été supprimé avec succès');
-
-    return $this->redirectToRoute('admin_statute_list');
+        return new Response('true');
     
     }
 
