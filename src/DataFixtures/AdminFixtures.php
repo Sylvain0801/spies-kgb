@@ -23,24 +23,24 @@ class AdminFixtures extends Fixture
         for($i = 1; $i < 10; $i++) {
     
             $admin = new Admin();
-            // if($i === 1) {
-            //     $admin
-            //         ->setFirstname('John')
-            //         ->setLastname('Doe')
-            //         ->setEmail('contact@demo.fr')
-            //         ->setRoles(["ROLE_ADMIN"]);
-            //     } else {
-            //         $admin
-            //         ->setFirstname($faker->firstname())
-            //         ->setLastname($faker->lastname)
-            //         ->setEmail($faker->email)   
-            //         ->setRoles(["ROLE_USE"]);
-            //     }
-            $admin
-                ->setFirstname($faker->firstname())
-                ->setLastname($faker->lastname)
-                ->setEmail($faker->email)   
-                ->setRoles(["ROLE_USER"]);
+            if($i === 1) {
+                $admin
+                    ->setFirstname('John')
+                    ->setLastname('Doe')
+                    ->setEmail('contact@demo.fr')
+                    ->setRoles(["ROLE_ADMIN"]);
+                } else {
+                    $admin
+                    ->setFirstname($faker->firstname())
+                    ->setLastname($faker->lastname)
+                    ->setEmail($faker->email)   
+                    ->setRoles(["ROLE_USER"]);
+                }
+            // $admin
+            //     ->setFirstname($faker->firstname())
+            //     ->setLastname($faker->lastname)
+            //     ->setEmail($faker->email)   
+            //     ->setRoles(["ROLE_USER"]);
             $admin
                 ->setPassword($this->encoder->encodePassword($admin, '123456'))
                 ->setIsVerified(1);

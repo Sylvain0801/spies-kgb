@@ -18,8 +18,7 @@ class NationalityFixtures extends Fixture
             $nationality->setName($value['nationalite']);
             $nationality->setCountry($value['libelle']);
             $manager->persist($nationality);
-            $this->addReference('nationality_'.$key, $nationality->getName());
-            $this->addReference('country_'.$key, $nationality->getCountry());
+            $this->addReference('nationality_'.$key, $nationality);
         }
 
         $manager->flush();

@@ -1,0 +1,20 @@
+<div class="col-6 col-12-medium">
+  <h3 class="table-title icon fa-caret-right">&nbsp;Section {{ section }}</h3>
+  {{ form_start(hideoutForm) }}
+    <div class="row">
+      <div class="col-6 col-12-small">
+        {{ form_row(hideoutForm.code) }}
+      </div>
+      <div class="col-6 col-12-small">
+        {{ form_row(hideoutForm.type) }}
+      </div>
+    </div>
+    {{ form_row(hideoutForm.address) }}
+    {{ form_row(hideoutForm.nationality) }}
+    <div class="form-buttons-group">
+      <button type="submit" class="button primary icon fa-save">{{ btncaption }}</button>
+      <a href="{{ path('admin_hideout_list') }}" class="button icon fa-backward">Retour liste</a>
+    </div>
+  {{ form_end(hideoutForm) }}
+</div>
+<div class="col-4 col-12-medium logo-kgb top"></div>

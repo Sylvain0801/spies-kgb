@@ -1,20 +1,48 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello SpecialityController!{% endblock %}
-
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Job/symfony/spies-kgb/src/Controller/SpecialityController.php'|file_link(0) }}">src/Controller/SpecialityController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Job/symfony/spies-kgb/templates/speciality/index.html.twig'|file_link(0) }}">templates/speciality/index.html.twig</a></code></li>
-    </ul>
+{% extends "admin/index.html.twig" %}
+{% block table %}
+<div class="col-5 col-12-medium">
+  <div class="table-wrapper">
+    <h3 class="table-title icon fa-caret-right">&nbsp;Section {{ section }}</h3>
+    <table>
+      <thead>
+        <tr>
+          {% for key, header in headers %}
+            <th>
+              <div class="headers">
+                {{ header }}
+                <div class="sort-buttons">
+                  <a href="{{ path('admin_speciality_list', {'header': key , 'sorting': 'DESC'}) }}" class="icon fa-caret-up" title="Tri décroissant"></a>
+                  <a href="{{ path('admin_speciality_list', {'header': key , 'sorting': 'ASC'}) }}" class="icon fa-caret-down" title="Tri croissant"></a>
+                </div>
+              </div>
+            </th>
+          {% endfor %}
+          <th>Actions</th>  
+        </tr>
+      </thead>
+      <tbody>
+        {% for speciality in specialities %}   
+          <tr>
+            <td id="{{'name_'~speciality.id}}">{{ speciality.name }}</td>
+            <td>
+              <a id="{{'btn_'~speciality.id}}" class="button small icon fa-pencil btn-edit" role="button" title="Editer" data-id="{{ speciality.id }}" data-name="{{ speciality.name }}"></a>
+              <a class="button primary small icon fa-trash btn-delete" role="button" title="Supprimer" data-id="{{ speciality.id }}" data-route="speciality" onclick="return confirm('Le statut {{ speciality.name }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="col-5 col-12-medium" style="padding-top: 3rem;">
+  <form>
+    <input type="hidden" name="inputId" id="inputId" required>
+    <label for="inputName">Nom</label>
+    <input type="text" name="inputName" id="inputName" required>
+    <div class="form-buttons-group">
+      <a id="save" class="button primary icon fa-save" data-route="speciality">Modifier</a>
+      <a id="create" class="button icon fa-plus">Ajouter</a>
+    </div>
+  </form>
 </div>
 {% endblock %}

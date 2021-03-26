@@ -1,20 +1,12 @@
 window.onload = () => {
   let [iId, iName, iColor] = document.querySelectorAll('#inputId, #inputName, #inputColor')
-  const editButtons = () => {
-    let btnEdit = document.querySelectorAll('a.btn-edit')
-    for (let btn of btnEdit) {
-      btn.addEventListener('click', function() {  
-        iId.value = this.dataset.id
-        iName.value = this.dataset.name
-        iColor.value = this.dataset.color
-      })
-    }
-  }
   const btnSave = document.getElementById('save')
+  const route = btnSave.dataset.route
+  console.log(btnSave);
   btnSave.addEventListener('click', function() {
     let [id, name, color] = [iId.value, iName.value, iColor.value.substring(1, iColor.value.length)]
     let xhr = new XMLHttpRequest()
-    xhr.open("get", `/admin/statute/edit/${id}/${name}/${color}`)
+    xhr.open("get", `/admin/${route}/edit/${id}/${name}/${color}`)
     xhr.addEventListener('readystatechange', function() {
       if(xhr.readyState === 4) {
           if(xhr.status !== 200) {
@@ -25,7 +17,7 @@ window.onload = () => {
             document.getElementById('btn_' + id).setAttribute('data-name', name)
             document.getElementById('btn_' + id).setAttribute('data-color', '#' + color)
             inputId.value = inputColor.value = inputName.value = ''
-            alert('Le statut a été mis à jour avec succès.')
+            alert('La sélection a été mise à jour avec succès.')
           }
         }
       })
@@ -35,9 +27,8 @@ window.onload = () => {
   btnCreate.addEventListener('click', function() {
     let [name, color] = [iName.value, iColor.value.substring(1, iColor.value.length)]
     if (name) {
-
       let xhr = new XMLHttpRequest()
-      xhr.open("get", `/admin/statute/new/${name}/${color}`)
+      xhr.open("get", `/admin/${route}/new/${name}/${color}`)
       xhr.addEventListener('readystatechange', function() {
         if(xhr.readyState === 4) {
           if(xhr.status !== 200) {
@@ -65,7 +56,7 @@ window.onload = () => {
               editButtons()
               deleteButtons()
               inputId.value = inputColor.value = inputName.value = ''
-              alert('Le statut a été mis à jour avec succès.')
+              alert('La sélection a été mise à jour avec succès.')
             }
           }
         })
@@ -75,13 +66,25 @@ window.onload = () => {
       alert('Le champ nom est requis !')
     }
   })
+
+  const editButtons = () => {
+    let btnEdit = document.querySelectorAll('a.btn-edit')
+    for (let btn of btnEdit) {
+      btn.addEventListener('click', function() {  
+        iId.value = this.dataset.id
+        iName.value = this.dataset.name
+        iColor.value = this.dataset.color
+      })
+    }
+  }
+
   const deleteButtons = () => {
     let btnDelete = document.querySelectorAll('a.btn-delete')
     for (let btn of btnDelete) {
       btn.addEventListener('click', function() {  
         let xhr = new XMLHttpRequest()
         let id = this.dataset.id
-        xhr.open("get", `/admin/statute/delete/${id}`)
+        xhr.open("get", `/admin/${route}/delete/${id}`)
         xhr.addEventListener('readystatechange', function() {
           if(xhr.readyState === 4) {
             if(xhr.status !== 200) {

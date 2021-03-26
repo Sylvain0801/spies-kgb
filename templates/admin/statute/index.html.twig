@@ -3,9 +3,6 @@
 <div class="col-5 col-12-medium">
   <div class="table-wrapper">
     <h3 class="table-title icon fa-caret-right">&nbsp;Section {{ section }}</h3>
-    {% for message in app.flashes('message_admin') %}
-      <div class="alert alert-success" role="alert">{{ message }}</div>
-    {% endfor %}
     <table>
       <thead>
         <tr>
@@ -48,7 +45,7 @@
     <label for="inputColor">Couleur</label>
     <input type="color" name="inputColor" id="inputColor" required>
     <div class="form-buttons-group">
-      <a id="save" class="button primary icon fa-save">Modifier</a>
+      <a id="save" class="button primary icon fa-save" data-route="statute">Modifier</a>
       <a id="create" class="button icon fa-plus">Ajouter</a>
     </div>
   </form>

@@ -5,10 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Statute;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * @Route("admin/statute", name="admin_statute_")

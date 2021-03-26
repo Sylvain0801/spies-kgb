@@ -36,7 +36,7 @@ class Hideout
      * @ORM\ManyToOne(targetEntity=Nationality::class, inversedBy="hideouts")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $country;
+    private $nationality;
 
     public function getId(): ?int
     {
@@ -79,14 +79,14 @@ class Hideout
         return $this;
     }
 
-    public function getCountry(): ?Nationality
+    public function getNationality(): ?Nationality
     {
-        return $this->country;
+        return $this->nationality;
     }
 
-    public function setCountry(?Nationality $country): self
+    public function setNationality(?Nationality $nationality): self
     {
-        $this->country = $country;
+        $this->nationality = $nationality;
 
         return $this;
     }
