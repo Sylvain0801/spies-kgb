@@ -26,7 +26,7 @@
             <td id="{{'name_'~speciality.id}}">{{ speciality.name }}</td>
             <td>
               <a id="{{'btn_'~speciality.id}}" class="button small icon fa-pencil btn-edit" role="button" title="Editer" data-id="{{ speciality.id }}" data-name="{{ speciality.name }}"></a>
-              <a class="button primary small icon fa-trash btn-delete" role="button" title="Supprimer" data-id="{{ speciality.id }}" data-route="speciality" onclick="return confirm('Le statut {{ speciality.name }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
+              <a class="button primary small icon fa-trash btn-delete" role="button" title="Supprimer" data-id="{{ speciality.id }}" data-route="speciality" onclick="return confirm('La spécialité {{ speciality.name }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
             </td>
           </tr>
         {% endfor %}

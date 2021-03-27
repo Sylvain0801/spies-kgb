@@ -10,10 +10,13 @@
 			<h1>Russian KGB</h1>
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit possimus.<br>
         Tempora voluptatem reiciendis sequi magnam accusantium quos cupiditate!</p>
-      <a href="{{ path('app_login') }}" class="button primary fit icon fa-lock" style="width:200px; text-transform: uppercase;">Se connecter</a>
+			{% if is_granted('ROLE_ADMIN') %}
+      	<a href="{{ path('admin_home') }}" class="button primary icon fa-superpowers" style="text-transform: uppercase;">Espace administrateur</a>
+			{% else %}
+      	<a href="{{ path('app_login') }}" class="button primary icon fa-lock" style="text-transform: uppercase;">Se connecter</a>
+			{% endif %}
 		</div>
 	</section>
-
 	<!-- Highlights -->
 	<section class="wrapper">
 		<div class="inner">

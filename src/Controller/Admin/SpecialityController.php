@@ -65,7 +65,7 @@ class SpecialityController extends AbstractController
     }
 
     /**
-    * @Route("/delete/{id}/", name="delete")
+    * @Route("/delete/{id}", name="delete")
     */   
     public function delete(speciality $speciality): Response
     {

@@ -45,7 +45,7 @@ class Nationality
     private $Country;
 
     /**
-     * @ORM\OneToMany(targetEntity=Hideout::class, mappedBy="country")
+     * @ORM\OneToMany(targetEntity=Hideout::class, mappedBy="nationality")
      */
     private $hideouts;
 
@@ -188,7 +188,7 @@ class Nationality
     {
         if (!$this->hideouts->contains($hideout)) {
             $this->hideouts[] = $hideout;
-            $hideout->setCountry($this);
+            $hideout->setNationality($this);
         }
 
         return $this;
@@ -198,8 +198,8 @@ class Nationality
     {
         if ($this->hideouts->removeElement($hideout)) {
             // set the owning side to null (unless already changed)
-            if ($hideout->getCountry() === $this) {
-                $hideout->setCountry(null);
+            if ($hideout->getNationality() === $this) {
+                $hideout->setNationality(null);
             }
         }
 

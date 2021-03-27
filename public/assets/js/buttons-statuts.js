@@ -73,7 +73,7 @@ window.onload = () => {
       btn.addEventListener('click', function() {  
         iId.value = this.dataset.id
         iName.value = this.dataset.name
-        iColor.value = this.dataset.color
+        this.dataset.color && (iColor.value = this.dataset.color)
       })
     }
   }
@@ -90,9 +90,8 @@ window.onload = () => {
             if(xhr.status !== 200) {
               alert('Une erreur s\'est produite, veuillez réessayer plus tard !')
             } else {
-              eltToRemove = document.getElementById('name_' + id).parentNode
-              eltToRemove.remove()
-              alert('Le statut a été supprimé avec succès.')
+              document.getElementById('name_' + id).parentNode.remove()
+              alert('La sélection a été supprimée avec succès.')
             }
           }      
         })
