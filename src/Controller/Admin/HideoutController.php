@@ -82,7 +82,7 @@ class HideoutController extends AbstractController
         }
         return $this->render('admin/hideout/edit.html.twig', [
             'hideoutForm' => $form->createView(),
-            'section' => 'planque'
+            'section' => 'planques'
             ]);
         }
     

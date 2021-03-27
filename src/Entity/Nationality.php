@@ -49,12 +49,18 @@ class Nationality
      */
     private $hideouts;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Mission::class, mappedBy="nationality")
+     */
+    private $missions;
+
     public function __construct()
     {
         $this->agents = new ArrayCollection();
         $this->contacts = new ArrayCollection();
         $this->targets = new ArrayCollection();
         $this->hideouts = new ArrayCollection();
+        $this->missions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -200,6 +206,36 @@ class Nationality
             // set the owning side to null (unless already changed)
             if ($hideout->getNationality() === $this) {
                 $hideout->setNationality(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Mission[]
+     */
+    public function getMissions(): Collection
+    {
+        return $this->missions;
+    }
+
+    public function addMission(Mission $mission): self
+    {
+        if (!$this->missions->contains($mission)) {
+            $this->missions[] = $mission;
+            $mission->setNationality($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMission(Mission $mission): self
+    {
+        if ($this->missions->removeElement($mission)) {
+            // set the owning side to null (unless already changed)
+            if ($mission->getNationality() === $this) {
+                $mission->setNationality(null);
             }
         }
 

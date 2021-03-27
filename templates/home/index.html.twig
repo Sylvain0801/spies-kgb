@@ -24,103 +24,14 @@
 				<h2>Liste des missions de l'agence</h2>
 			</header>
 			<div class="highlights">
-				<section>
-					<div class="content">
-            <a href="#" class="icon fa-vcard-o">
-              <span class="label">Icon</span>
-            </a>
-            <h3>Feugiat consequat</h3>
-            <p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
+				<section style="width:100%">
+					{% for icon in icons %}
+					<a href="#" class="{{ icon }}" style="font-size:40px" title="{{ icon }}"></a>
+					{% endfor %}
+            
 				</section>
-				<section>
-					<div class="content">
-            <a href="#" class="icon fa-files-o">
-              <span class="label">Icon</span>
-            </a>
-            <h3>Ante sem integer</h3>
-            <p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
-				</section>
-				<section>
-					<div class="content">
-            <a href="#" class="icon fa-floppy-o">
-              <span class="label">Icon</span>
-            </a>
-            <h3>Ipsum consequat</h3>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
-				</section>
-				<section>
-					<div class="content">
-            <a href="#" class="icon fa-line-chart">
-              <span class="label">Icon</span>
-            </a>
-            <h3>Interdum gravida</h3>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
-				</section>
-				<section>
-					<div class="content">
-            <a href="#" class="icon fa-paper-plane-o">
-              <span class="label">Icon</span>
-            </a>
-            <h3>Faucibus consequat</h3>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
-				</section>
-				<section>
-					<div class="content">
-            <a href="#" class="icon fa-qrcode">
-              <span class="label">Icon</span>
-            </a>
-            <h3>Accumsan viverra</h3>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
-				</section>
-				<section>
-					<div class="content">
-            <a href="#" class="icon fa-line-chart">
-              <span class="label">Icon</span>
-            </a>
-            <h3>Interdum gravida</h3>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
-				</section>
-				<section>
-					<div class="content">
-            <a href="#" class="icon fa-paper-plane-o">
-              <span class="label">Icon</span>
-            </a>
-            <h3>Faucibus consequat</h3>
-						<p>Nunc lacinia ante nunc ac lobortis ipsum. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus.</p>
-					</div>
-				</section>
-				<section>
-					<div class="content">
-            <a href="#" class="icon fa-drivers-license-o">
-              <!-- <span class="label">Icon</span> -->
-            </a>
-            <a href="#" class="icon fas fa-fighter-jet">
-              <!-- <span class="label">Icon</span> -->
-            </a>
-            <a href="#" class="icon fa-tablet">
-              <!-- <span class="label">Icon</span> -->
-            </a>
-            <a href="#" class="icon fa-spinner">
-              <!-- <span class="label">Icon</span> -->
-            </a>
-            <a href="#" class="icon fa-video-camera">
-              <!-- <span class="label">Icon</span> -->
-            </a>
-            <a href="#" class="icon fa-dashboard">
-              <!-- <span class="label">Icon</span> -->
-            </a>
-					</div>
-				</section><i class="fas fa-fighter-jet"></i>
 			</div>
-		</div>
-	</section>
+				
 
 	<!-- CTA -->
 	<section id="cta" class="wrapper">

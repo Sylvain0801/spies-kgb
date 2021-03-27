@@ -1,0 +1,42 @@
+<div class="col-10 col-12-medium">
+  <h3 class="table-title icon fa-caret-right">&nbsp;Section {{ section }}</h3>
+  {{ form_start(missionForm) }}
+    <div class="row">
+      <div class="col-5 col-12-small">
+        {{ form_row(missionForm.title) }}
+      </div>
+      <div class="col-3 col-12-small">
+        {{ form_row(missionForm.code_name) }}
+      </div>
+      <div class="col-4 col-12-small">
+        {{ form_row(missionForm.type) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4 col-12-small">
+        {{ form_row(missionForm.speciality) }}
+      </div>
+      <div class="col-4 col-12-small">
+        {{ form_row(missionForm.start_date) }}
+      </div>
+      <div class="col-4 col-12-small">
+        {{ form_row(missionForm.end_date) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8 col-12-small">
+        {{ form_row(missionForm.nationality) }}
+      </div>
+      <div class="col-4 col-12-small">
+        {{ form_row(missionForm.statute) }}
+      </div>
+    </div>
+    {{ form_row(missionForm.agent) }}
+    {{ form_row(missionForm.description) }}
+    <div class="form-buttons-group">
+      <button type="submit" class="button primary icon fa-save">{{ btncaption }}</button>
+      <a href="{{ path('admin_mission_list') }}" class="button icon fa-backward">Retour liste</a>
+    </div>
+  {{ form_end(missionForm) }}
+</div>
+{# <div class="col-5 col-12-medium logo-kgb top"></div> #}

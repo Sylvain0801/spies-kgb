@@ -4381,6 +4381,13 @@ input[type="color"]:focus {
   width: 2rem;
   border-radius: 50%;
   border: 0.5px solid #555555;
+}
+
+span.statute-color {
+  width: 0.7rem;
+  height: 0.7rem;
+  display: inline-block;
+  border-radius: 50%;
   -webkit-box-shadow: inset 1px 1px 2px black;
           box-shadow: inset 1px 1px 2px black;
 }

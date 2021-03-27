@@ -1,0 +1,54 @@
+{% extends "admin/index.html.twig" %}
+{% block table %}
+<div class="col-10 col-12-medium">
+  <div class="table-wrapper">
+    <h3 class="table-title icon fa-caret-right">&nbsp;Section {{ section }}</h3>
+    {% for message in app.flashes('message_admin') %}
+      <div class="alert alert-success" role="alert">{{ message }}</div>
+    {% endfor %}
+    <table>
+      <thead>
+        <tr>
+          {% for key, header in headers %}
+            <th>
+              <div class="headers">
+                {{ header }}
+                <div class="sort-buttons">
+                  <a href="{{ path('admin_mission_list', {'header': key , 'sorting': 'DESC'}) }}" class="icon fa-caret-up" title="Tri décroissant"></a>
+                  <a href="{{ path('admin_mission_list', {'header': key , 'sorting': 'ASC'}) }}" class="icon fa-caret-down" title="Tri croissant"></a>
+                </div>
+              </div>
+            </th>
+          {% endfor %}
+          <th>Actions</th>  
+        </tr>
+      </thead>
+      <tbody>
+        {% for mission in missions %}   
+          <tr>
+            <td>{{ mission.title }}</td>
+            <td>{{ mission.type }}</td>
+            <td>{{ mission.startDate|date('d/m/Y') }}</td>
+            <td>{{ mission.endDate|date('d/m/Y') }}</td>
+            <td>{{ mission.speciality.name }}</td>
+            <td>{{ mission.nationality.country }}</td>
+            <td>{{ mission.statute.name }}&nbsp;
+              <span class="statute-color" style="background-color: {{ mission.statute.color }}"></span>
+            </td>
+            <td>
+              <a href="{{ path('admin_mission_edit', {'id':mission.id}) }}" class="button small icon fa-pencil" role="button" title="Editer"></a>
+              <a href="{{ path('admin_mission_delete', {'id':mission.id}) }}" class="button primary small icon fa-trash" role="button" title="Supprimer" onclick="return confirm('La mission {{ mission.codeName }} va être définitivement supprimé, ce choix doit être confirmé ?')"></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% if missions.getTotalItemCount > 8 %}
+    <div class="navigation">
+      {{ knp_pagination_render(missions) }}
+    </div>
+  {% endif %}
+  <a href="{{ path('admin_mission_new') }}" class="button small icon fa-plus" role="button">&nbsp;Ajouter</a>
+</div>
+{% endblock %}
