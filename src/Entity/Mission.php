@@ -68,13 +68,32 @@ class Mission
     private $speciality;
 
     /**
-     * @ORM\OneToMany(targetEntity=Agent::class, mappedBy="mission")
+     * @ORM\ManyToMany(targetEntity=Agent::class, inversedBy="missions")
      */
     private $agent;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Contact::class, inversedBy="missions")
+     */
+    private $contact;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Hideout::class, inversedBy="missions")
+     */
+    private $hideout;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Target::class, inversedBy="missions")
+     */
+    private $target;
+
 
     public function __construct()
     {
         $this->agent = new ArrayCollection();
+        $this->contact = new ArrayCollection();
+        $this->hideout = new ArrayCollection();
+        $this->target = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -202,7 +221,6 @@ class Mission
     {
         if (!$this->agent->contains($agent)) {
             $this->agent[] = $agent;
-            $agent->setMission($this);
         }
 
         return $this;
@@ -210,13 +228,86 @@ class Mission
 
     public function removeAgent(Agent $agent): self
     {
-        if ($this->agent->removeElement($agent)) {
-            // set the owning side to null (unless already changed)
-            if ($agent->getMission() === $this) {
-                $agent->setMission(null);
-            }
+        $this->agent->removeElement($agent);
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return Collection|Contact[]
+     */
+    public function getContact(): Collection
+    {
+        return $this->contact;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contact->contains($contact)) {
+            $this->contact[] = $contact;
         }
 
         return $this;
     }
+
+    public function removeContact(Contact $contact): self
+    {
+        $this->contact->removeElement($contact);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Hideout[]
+     */
+    public function getHideout(): Collection
+    {
+        return $this->hideout;
+    }
+
+    public function addHideout(Hideout $hideout): self
+    {
+        if (!$this->hideout->contains($hideout)) {
+            $this->hideout[] = $hideout;
+        }
+
+        return $this;
+    }
+
+    public function removeHideout(Hideout $hideout): self
+    {
+        $this->hideout->removeElement($hideout);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Target[]
+     */
+    public function getTarget(): Collection
+    {
+        return $this->target;
+    }
+
+    public function addTarget(Target $target): self
+    {
+        if (!$this->target->contains($target)) {
+            $this->target[] = $target;
+        }
+
+        return $this;
+    }
+
+    public function removeTarget(Target $target): self
+    {
+        $this->target->removeElement($target);
+
+        return $this;
+    }
+
 }

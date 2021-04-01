@@ -31,9 +31,20 @@
             <td>{{ mission.startDate|date('d/m/Y') }}</td>
             <td>{{ mission.endDate|date('d/m/Y') }}</td>
             <td>{{ mission.speciality.name }}</td>
-            <td>{{ mission.nationality.country }}</td>
-            <td>{{ mission.statute.name }}&nbsp;
-              <span class="statute-color" style="background-color: {{ mission.statute.color }}"></span>
+            <td title="{{ mission.nationality.country }}">
+              {% if mission.nationality.country|length > 10 %}
+                {{ mission.nationality.country|slice(0, 10) }}...
+              {% else %}
+                {{ mission.nationality.country}}
+              {% endif %}
+            </td>
+            <td title="{{ mission.statute.name }}">
+              <span class="statute-color" style="background-color: {{ mission.statute.color }}">&nbsp;</span>
+              {% if mission.statute.name|length > 10 %}
+                {{ mission.statute.name|slice(0, 10) }}...
+              {% else %}
+                {{ mission.statute.name }}
+              {% endif %}
             </td>
             <td>
               <a href="{{ path('admin_mission_edit', {'id':mission.id}) }}" class="button small icon fa-pencil" role="button" title="Editer"></a>

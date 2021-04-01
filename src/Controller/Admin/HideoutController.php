@@ -26,7 +26,7 @@ class HideoutController extends AbstractController
             'code' => 'Code',
             'address' => 'Adresse',
             'type' => 'Type',
-            'country' => 'Pays'
+            'nationality' => 'Pays'
         ];
         $data = $this->getDoctrine()->getRepository(Hideout::class)->findBy([], [$header => $sorting]);
         $hideouts = $paginator->paginate(

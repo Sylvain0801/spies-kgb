@@ -14,15 +14,17 @@ class AgentFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
-        for($i = 0; $i < 40; $i++) {
-            $nationality = $this->getReference('nationality_'.$faker->numberBetween(0, 194));
+        for($i = 0; $i < 200; $i++) {
+            $nationality = $this->getReference('nationality_'.($faker->numberBetween(1, 20) * 6));
+            $speciality = $this->getReference('speciality_'.$faker->numberBetween(1, 10));
             $agent = new Agent();
             $agent
                 ->setIdentificationCode($faker->numberBetween($min = 100000, $max = 999999))
                 ->setFirstname($faker->firstname())
                 ->setLastname($faker->lastname)
                 ->setDateOfBirth($faker->dateTimeBetween($startDate = '-55 years', $endDate = '-25 years', $timezone = null))
-                ->setNationality($nationality);
+                ->setNationality($nationality)
+                ->addSpeciality($speciality);
             $manager->persist($agent);
         }
 
@@ -32,6 +34,7 @@ class AgentFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             NationalityFixtures::class,
+            SpecialityFixtures::class
         ];
     }
 }

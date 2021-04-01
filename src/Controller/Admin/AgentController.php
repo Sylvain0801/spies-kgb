@@ -69,10 +69,12 @@ class AgentController extends AbstractController
     */
     public function editAgent(Agent $agent, Request $request): Response
     {
+
         $form = $this->createForm(AgentType::class, $agent);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($agent);
             $em->flush();

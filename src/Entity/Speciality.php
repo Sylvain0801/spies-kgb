@@ -34,9 +34,15 @@ class Speciality
      */
     private $icon;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Agent::class, mappedBy="speciality")
+     */
+    private $agents;
+
     public function __construct()
     {
         $this->missions = new ArrayCollection();
+        $this->agents = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -94,6 +100,38 @@ class Speciality
     public function setIcon(string $icon): self
     {
         $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return Collection|Agent[]
+     */
+    public function getAgents(): Collection
+    {
+        return $this->agents;
+    }
+
+    public function addAgent(Agent $agent): self
+    {
+        if (!$this->agents->contains($agent)) {
+            $this->agents[] = $agent;
+            $agent->addSpeciality($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAgent(Agent $agent): self
+    {
+        if ($this->agents->removeElement($agent)) {
+            $agent->removeSpeciality($this);
+        }
 
         return $this;
     }

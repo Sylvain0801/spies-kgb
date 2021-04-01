@@ -16,8 +16,8 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
     {
         $type = ['Surveillance', 'Assassinat', 'Infiltration', 'Autre'];
         $faker = Faker\Factory::create('fr_FR');
-        for($i = 0; $i < 40; $i++) {
-            $nationality = $this->getReference('nationality_'.$faker->numberBetween(0, 194));
+        for($i = 0; $i < 200; $i++) {
+            $nationality = $this->getReference('nationality_'.($faker->numberBetween(1, 20) * 6));
             $speciality = $this->getReference('speciality_'.$faker->numberBetween(1, 10));
             $statute = $this->getReference('statute_'.$faker->numberBetween(1, 4));
             $date = $faker->dateTimeBetween('-5 years', '+5 years', null);
@@ -27,7 +27,7 @@ class MissionFixtures extends Fixture implements DependentFixtureInterface
             $mission = new Mission();
             $mission
                 ->setTitle($faker->domainWord)
-                ->setDescription($faker->paragraph(3, false))
+                ->setDescription($faker->paragraph(12, false))
                 ->setCodeName($faker->word)
                 ->setType($type[$faker->numberBetween(0, 3)])
                 ->setStartDate($start_date)

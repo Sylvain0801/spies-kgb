@@ -162,13 +162,13 @@
 		background-color: #5cb85c;
 		border: 1px solid #3c763d;
 		color: #dff0d8;
-		box-shadow: 0px 2px 5px var(--color-success);
+		box-shadow: 0px 2px 5px #3c763d;
 	}
 	&.alert-danger {
 		background-color: #ea272d;
 		border: 1px solid #a94442;
 		color: #f2dede;
-		box-shadow: 0px 2px 5px var(--color-danger);
+		box-shadow: 0px 2px 5px #a94442;
 	}
 }
 // button sort headers
@@ -217,8 +217,37 @@ span.statute-color {
 	display: inline-block;
 	border-radius: 50%;
 	box-shadow: inset 1px 1px 2px black;
+	vertical-align: middle;
 }
 #save {
 	display: block;
 	max-width: 140px;
+}
+// css select2
+.select2-selection.select2-selection--multiple {
+	color: #555555;
+	background-color: rgba(0, 0, 0, 0.075);
+	border: 1px solid #aaa!important;
+	&:focus, &:active {
+		border: 1px solid #ce1b28!important;
+		box-shadow: 0 0 0 1px #ce1b28!important;
+	}
+}
+.select2.select2-container.select2-container--default {
+	width: 100% !important;
+	margin-bottom: 1.5rem;
+	&.select2-container--focus.select2-container--below.select2-container--open {
+		border: 1px solid #ce1b28!important;
+		box-shadow: 0 0 0 1px #ce1b28!important;
+		border-radius: 4px!important;
+	}
+}
+input.select2-search__field {
+	margin-top:0 !important;
+}
+li.select2-selection__choice {
+	background-color: #d1d1d1!important;
+}
+.icon {
+	font-size: 16px;
 }

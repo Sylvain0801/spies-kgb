@@ -25,7 +25,9 @@
             </ul>
           </div>
           {% block table %}
-            <div class="col-10 col-12-medium logo-image-kgb"></div>
+            <div class="col-10 col-12-medium logo-image-kgb">
+              <h3 class="table-title icon fa-caret-right">&nbsp;Bienvenue {{ app.user.firstname }}</h3>
+            </div>
           {% endblock %}
         </div>
       </div>

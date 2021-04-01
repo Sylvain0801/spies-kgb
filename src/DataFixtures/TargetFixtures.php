@@ -14,8 +14,8 @@ class TargetFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
-        for($i = 0; $i < 40; $i++) {
-            $nationality = $this->getReference('nationality_'.$faker->numberBetween(0, 194));
+        for($i = 0; $i < 200; $i++) {
+            $nationality = $this->getReference('nationality_'.($faker->numberBetween(1, 20) * 6));
             $target = new Target();
             $target
                 ->setFirstname($faker->firstname())

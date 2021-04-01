@@ -1,8 +1,14 @@
 <div class="col-6 col-12-medium">
   <h3 class="table-title icon fa-caret-right">&nbsp;Section {{ section }}</h3>
   {{ form_start(agentForm) }}
-    {{ form_row(agentForm.firstname) }}
-    {{ form_row(agentForm.lastname) }}
+    <div class="row">
+      <div class="col-6 col-12-small">
+        {{ form_row(agentForm.firstname) }}
+      </div>
+      <div class="col-6 col-12-small">
+        {{ form_row(agentForm.lastname) }}
+      </div>
+    </div>
     <div class="row">
       <div class="col-6 col-12-small">
         {{ form_row(agentForm.identification_code) }}
@@ -11,7 +17,14 @@
         {{ form_row(agentForm.date_of_birth) }}
       </div>
     </div>
-    {{ form_row(agentForm.nationality) }}
+    <div class="row">
+      <div class="col-6 col-12-small">
+        {{ form_row(agentForm.nationality) }}
+      </div>
+      <div class="col-6 col-12-small">
+        {{ form_row(agentForm.speciality) }}
+      </div>
+    </div>
     <div class="form-buttons-group">
       <button type="submit" class="button primary icon fa-save">{{ btncaption }}</button>
       <a href="{{ path('admin_agent_list') }}" class="button icon fa-backward">Retour liste</a>
