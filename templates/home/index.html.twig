@@ -8,7 +8,7 @@
 	<section id="banner">
 		<div class="inner">
 			<h1>Russian KGB</h1>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit possimus.<br>
+			<p>Комитет государственной безопасности<br>
         Tempora voluptatem reiciendis sequi magnam accusantium quos cupiditate!</p>
 			{% if is_granted('ROLE_ADMIN') %}
       	<a href="{{ path('admin_home') }}" class="button primary icon fa-superpowers" style="text-transform: uppercase;">Espace administrateur</a>
@@ -21,17 +21,26 @@
 	<section class="wrapper">
 		<div class="inner">
 			<header class="special">
-				<h2>Liste des missions de l'agence</h2>
+				<h2>Liste des missions en préparation</h2>
 			</header>
+
 			<div class="highlights">
-				<section style="width:100%">
-					{% for icon in icons %}
-					<a href="#" class="{{ icon }}" style="font-size:40px" title="{{ icon }}"></a>
-					{% endfor %}
-            
-				</section>
-			</div>
-				
+				{% for mission in missions %}
+					<section>
+						<div class="content">
+							<header>
+								<a href="#" class="{{ 'icon '~mission.speciality.icon }}"><span class="label">Icon</span></a>
+								<h3>{{ mission.title }}</h3>
+								<h4>Type : {{ mission.type }}</h4>
+							</header>
+							<p>{{ mission.description|slice(0, 100) }}...</p>
+							<p>Du {{ mission.startDate|date('d/m/Y') }} au {{ mission.endDate|date('d/m/Y') }}</p>
+							<p><span class="statute-color" style="background-color: {{ mission.statute.color }}"></span>&nbsp;{{ mission.statute.name }}</p>
+							<a href="" class="button primary small" role="button">En savoir plus</a>
+						</div>
+					</section>
+				{% endfor %}
+			</div>	
 
 	<!-- CTA -->
 	<section id="cta" class="wrapper">

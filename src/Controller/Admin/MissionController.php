@@ -6,7 +6,6 @@ use App\Entity\Contact;
 use App\Entity\Hideout;
 use App\Entity\Mission;
 use App\Form\MissionType;
-use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,7 +53,7 @@ class MissionController extends AbstractController
     */
     public function newMission(Request $request): Response
     {
-        $mission =new Mission();
+        $mission = new Mission();
         $form = $this->createForm(MissionType::class, $mission);
         $form->handleRequest($request);
 

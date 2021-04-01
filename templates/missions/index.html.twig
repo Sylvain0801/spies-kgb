@@ -11,10 +11,33 @@
 	<!-- Main -->
 	<section id="main" class="wrapper">
 		<div class="inner">
-			<div class="content">
-				<h2>Комитет государственной безопасности</h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat quo voluptatibus corrupti minima sunt reiciendis facere at molestiae, sequi nobis odio quos magnam labore laborum unde ratione! Sapiente explicabo tenetur nobis perspiciatis provident soluta, adipisci atque. Vitae, nisi amet laboriosam facere itaque ducimus sequi praesentium accusantium inventore omnis laborum quos consequatur maxime assumenda ex sit, necessitatibus nihil. Eaque ab quasi dolorum neque quaerat repudiandae. Dolorem tempore dolores nostrum? Nesciunt repellat, dolorum omnis qui excepturi voluptas amet temporibus quae quos eius nemo doloremque saepe quibusdam illo repudiandae maxime numquam aut nihil, cupiditate tempora quam ad? Dicta iure repellendus voluptatibus nisi cum.</p>
+			<div class="row">
+				<div class="col-4 col-12-small">
+					<input type="text" name="" id="">
+				</div>
 			</div>
+			<div class="highlights">
+				{% for mission in missions %}
+					<section>
+						<div class="content">
+							<header>
+								<a href="#" class="{{ 'icon '~mission.speciality.icon }}"><span class="label">Icon</span></a>
+								<h3>{{ mission.title }}</h3>
+								<h4>Type : {{ mission.type }}</h4>
+							</header>
+							<p>{{ mission.description|slice(0, 100) }}...</p>
+							<p>Du {{ mission.startDate|date('d/m/Y') }} au {{ mission.endDate|date('d/m/Y') }}</p>
+							<p><span class="statute-color" style="background-color: {{ mission.statute.color }}"></span>&nbsp;{{ mission.statute.name }}</p>
+							<a href="" class="button primary small" role="button">En savoir plus</a>
+						</div>
+					</section>
+				{% endfor %}
+			</div>
+			{% if missions.getTotalItemCount > 8 %}
+				<div class="navigation">
+					{{ knp_pagination_render(missions) }}
+				</div>
+			{% endif %}	
 		</div>
 	</section>
 {% endblock %}
