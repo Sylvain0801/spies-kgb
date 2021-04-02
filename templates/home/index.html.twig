@@ -35,6 +35,7 @@
 							</header>
 							<p>{{ mission.description|slice(0, 100) }}...</p>
 							<p>Du {{ mission.startDate|date('d/m/Y') }} au {{ mission.endDate|date('d/m/Y') }}</p>
+							<h4 class="icon fa-map-marker" style="font-size: 1rem;">&nbsp;{{ mission.nationality.country }}</h4>
 							<p><span class="statute-color" style="background-color: {{ mission.statute.color }}"></span>&nbsp;{{ mission.statute.name }}</p>
 							<a href="" class="button primary small" role="button">En savoir plus</a>
 						</div>

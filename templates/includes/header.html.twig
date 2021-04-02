@@ -12,7 +12,7 @@
   <ul class="links">
     <li><a href="{{ path('home') }}" class="icon fa-home">&nbsp;Accueil</a></li>
     <li><a href="{{ path('about') }}" class="icon fa-book">&nbsp;À propos</a></li>
-    <li><a href="{{ path('missions') }}" class="icon fa-fighter-jet">&nbsp;Nos missions</a></li>
+    <li><a href="{{ path('mission') }}" class="icon fa-fighter-jet">&nbsp;Nos missions</a></li>
     {% if is_granted('ROLE_ADMIN') %}
       <li><a href="{{ path('admin_home') }}" class="icon fa-superpowers">&nbsp;Administrateur</a></li>  
     {% endif %}
