@@ -35,7 +35,7 @@
 					<section>
 						<div class="content">
 							<header>
-								<a href="#" class="{{ 'icon '~mission.speciality.icon }}"><span class="label">Icon</span></a>
+								<a href="{{ path('mission_edit', {'id': mission.id }) }}" class="{{ 'icon '~mission.speciality.icon }}"><span class="label">Icon</span></a>
 								<h3>{{ mission.title }}</h3>
 								<h4>Type : {{ mission.type }}</h4>
 							</header>
@@ -43,7 +43,7 @@
 							<p>Du {{ mission.startDate|date('d/m/Y') }} au {{ mission.endDate|date('d/m/Y') }}</p>
 							<h4 class="icon fa-map-marker" style="font-size: 1rem;">&nbsp;{{ mission.nationality.country }}</h4>
 							<p><span class="statute-color" style="background-color: {{ mission.statute.color }}"></span>&nbsp;{{ mission.statute.name }}</p>
-							<a href="" class="button primary small" role="button">En savoir plus</a>
+							<a href="{{ path('mission_edit', {'id': mission.id }) }}" class="button primary small" role="button">En savoir plus</a>
 						</div>
 					</section>
 				{% endfor %}

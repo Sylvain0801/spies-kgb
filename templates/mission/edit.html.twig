@@ -12,19 +12,150 @@
 	<section id="main" class="wrapper">
 		<div class="inner">
 			<header class="special">
-				<h2>Liste des missions en préparation</h2>
 				<h3 style="text-align:center">Комитет государственной безопасности</h3>
 			</header>
 			<div class="content">
-				
-			</div>
-			<div class="highlights">
-					<section>
-						<div class="content">
-							
+				<div class="row">
+					<div class="col-12" style="margin-bottom: 2rem">
+						<h2 class="table-title icon fa-caret-right">&nbsp;Mission : {{ mission.title }}</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-6 col-12-medium">
+						<h3>Statut de la mission : {{ mission.statute.name }} <span class="statute-color" style="background-color: {{ mission.statute.color }}"></span></h3>
+						<div class="table-wrapper">
+							<table class="alt" style="margin-bottom: 2rem!important">
+								<tbody>
+									<tr>
+										<td>Nom de code :</td>
+										<td>{{ mission.codeName }}</td>
+									</tr>
+									<tr>
+										<td>Type :</td>
+										<td>{{ mission.type }}</td>
+									</tr>
+									<tr>
+										<td>Spécialité requise :</td>
+										<td>{{ mission.speciality.name }}</td>
+									</tr>
+									<tr>
+										<td>Période :</td>
+										<td>Du {{ mission.startDate|date('d/m/Y') }} au {{ mission.endDate|date('d/m/Y') }}</td>
+									</tr>
+									<tr>
+										<td>Pays de localisation :</td>
+										<td>{{ mission.nationality.country }}</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
-					</section>
-			</div>	
+						<h3>Description</h3>
+						<blockquote>{{ mission.description }}</blockquote>
+						<div class="logo-kgb" style="height:300px"></div>
+					</div>
+					<div class="col-6 col-12-medium">
+						<h3>Les contacts ({{ mission.contact|length }})</h3>
+						<table style="margin-bottom: 2rem!important">
+							<thead>
+								<tr>
+									<th>Prénom</th>
+									<th>Nom</th>
+									<th>Né le</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for contact in mission.contact %}
+									<tr>
+										<td>{{ contact.firstname }}</td>
+										<td>{{ contact.lastname }}</td>
+										<td>{{ contact.dateOfBirth|date('d/m/Y') }}</td>
+									</tr>
+								{% else %}
+									<tr>
+										<td colspan="3">Il n'y pas encore de contact pour cette mission</td>
+									</tr>
+									
+								{% endfor %}
+							</tbody>
+						</table>
+						<h3>Les planques ({{ mission.hideout|length }})</h3>
+						<table style="margin-bottom: 2rem!important">
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Type</th>
+									<th>Adresse</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for hideout in mission.hideout %}
+									<tr>
+										<td>{{ hideout.code }}</td>
+										<td>{{ hideout.type }}</td>
+										<td>{{ hideout.address }}</td>
+									</tr>
+								{% else %}
+									<tr>
+										<td colspan="3">Il n'y pas encore de planque pour cette mission</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+						<h3>Les agents ({{ mission.agent|length }})</h3>
+						<table style="margin-bottom: 2rem!important">
+							<thead>
+								<tr>
+									<th>Prénom</th>
+									<th>Nom</th>
+									<th>Spécialité(s)</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for agent in mission.agent %}
+									<tr>
+										<td>{{ agent.firstname }}</td>
+										<td>{{ agent.lastname }}</td>
+										<td>
+											{% for speciality in agent.speciality %}
+												{{ speciality }}<br>
+											{% else %}
+												Il aucune spécialité pour cet agent
+											{% endfor %}
+										</td>
+									</tr>
+								{% else %}
+									<tr>
+										<td colspan="3">Il n'y pas encore d'agent pour cette mission</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+						<h3>Les cibles ({{ mission.target|length }})</h3>
+						<table style="margin-bottom: 2rem!important">
+							<thead>
+								<tr>
+									<th>Prénom</th>
+									<th>Nom</th>
+									<th>Pays</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for target in mission.target %}
+									<tr>
+										<td>{{ target.firstname }}</td>
+										<td>{{ target.lastname }}</td>
+										<td>{{ target.nationality.country }}</td>
+									</tr>
+								{% else %}
+									<tr>
+										<td colspan="3">Il n'y pas encore de cible pour cette mission</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 {% endblock %}

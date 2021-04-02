@@ -48,7 +48,7 @@ class MissionController extends AbstractController
      */
     public function editMission(Mission $mission): Response
     {
-        return $this->render('mission/index.html.twig', [
+        return $this->render('mission/edit.html.twig', [
             'mission' => $mission
             ]);
     }
